@@ -1,0 +1,1407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbow.mapper.base.RequestRecordInfoBaseMapper">
+
+
+    <insert id="insertRequestRecordInfo" >
+        INSERT INTO `request_record_info`
+        (
+        <trim suffixOverrides=",">
+                    <if test="serialNo!=null">
+                        `serial_no`,
+                    </if>
+                    <if test="traceId!=null">
+                        `trace_id`,
+                    </if>
+                    <if test="requestPath!=null">
+                        `request_path`,
+                    </if>
+                    <if test="requestMethod!=null">
+                        `request_method`,
+                    </if>
+                    <if test="spendTime!=null">
+                        `spend_time`,
+                    </if>
+                    <if test="status!=null">
+                        `status`,
+                    </if>
+                    <if test="remark!=null">
+                        `remark`,
+                    </if>
+                    <if test="resultCode!=null">
+                        `result_code`,
+                    </if>
+                    <if test="resultMsg!=null">
+                        `result_msg`,
+                    </if>
+                    <if test="businessType!=null">
+                        `business_type`,
+                    </if>
+                    <if test="serverIp!=null">
+                        `server_ip`,
+                    </if>
+                    <if test="clientIp!=null">
+                        `client_ip`,
+                    </if>
+                    <if test="createdBy!=null">
+                        `created_by`,
+                    </if>
+                    <if test="dateCreated!=null">
+                        `date_created`,
+                    </if>
+                    <if test="updatedBy!=null">
+                        `updated_by`,
+                    </if>
+                    <if test="dateUpdated!=null">
+                        `date_updated`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="serialNo!=null">
+                    #{serialNo},
+                </if>
+                <if test="traceId!=null">
+                    #{traceId},
+                </if>
+                <if test="requestPath!=null">
+                    #{requestPath},
+                </if>
+                <if test="requestMethod!=null">
+                    #{requestMethod},
+                </if>
+                <if test="spendTime!=null">
+                    #{spendTime},
+                </if>
+                <if test="status!=null">
+                    #{status},
+                </if>
+                <if test="remark!=null">
+                    #{remark},
+                </if>
+                <if test="resultCode!=null">
+                    #{resultCode},
+                </if>
+                <if test="resultMsg!=null">
+                    #{resultMsg},
+                </if>
+                <if test="businessType!=null">
+                    #{businessType},
+                </if>
+                <if test="serverIp!=null">
+                    #{serverIp},
+                </if>
+                <if test="clientIp!=null">
+                    #{clientIp},
+                </if>
+                <if test="createdBy!=null">
+                    #{createdBy},
+                </if>
+                <if test="dateCreated!=null">
+                    #{dateCreated},
+                </if>
+                <if test="updatedBy!=null">
+                    #{updatedBy},
+                </if>
+                <if test="dateUpdated!=null">
+                    #{dateUpdated},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateRequestRecordInfo">
+        UPDATE `request_record_info`
+        SET
+        <trim suffixOverrides=",">
+            <if test="traceId != null and traceId!=''">
+                `trace_id` = #{traceId},
+            </if>
+            <if test="requestPath != null and requestPath!=''">
+                `request_path` = #{requestPath},
+            </if>
+            <if test="requestMethod != null and requestMethod!=''">
+                `request_method` = #{requestMethod},
+            </if>
+            <if test="spendTime != null">
+                `spend_time` = #{spendTime},
+            </if>
+            <if test="status != null and status!=''">
+                `status` = #{status},
+            </if>
+            <if test="remark != null and remark!=''">
+                `remark` = #{remark},
+            </if>
+            <if test="resultCode != null and resultCode!=''">
+                `result_code` = #{resultCode},
+            </if>
+            <if test="resultMsg != null and resultMsg!=''">
+                `result_msg` = #{resultMsg},
+            </if>
+            <if test="businessType != null and businessType!=''">
+                `business_type` = #{businessType},
+            </if>
+            <if test="serverIp != null and serverIp!=''">
+                `server_ip` = #{serverIp},
+            </if>
+            <if test="clientIp != null and clientIp!=''">
+                `client_ip` = #{clientIp},
+            </if>
+            <if test="createdBy != null and createdBy!=''">
+                `created_by` = #{createdBy},
+            </if>
+            <if test="dateCreated != null">
+                `date_created` = #{dateCreated},
+            </if>
+            <if test="updatedBy != null and updatedBy!=''">
+                `updated_by` = #{updatedBy},
+            </if>
+            <if test="dateUpdated != null">
+                `date_updated` = #{dateUpdated},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `serial_no` = #{serialNo} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `request_record_info`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.traceId != null and set.traceId!=''">
+            `trace_id` = #{set.traceId},
+        </if>
+        <if test="set.requestPath != null and set.requestPath!=''">
+            `request_path` = #{set.requestPath},
+        </if>
+        <if test="set.requestMethod != null and set.requestMethod!=''">
+            `request_method` = #{set.requestMethod},
+        </if>
+        <if test="set.spendTime != null">
+            `spend_time` = #{set.spendTime},
+        </if>
+        <if test="set.status != null and set.status!=''">
+            `status` = #{set.status},
+        </if>
+        <if test="set.remark != null and set.remark!=''">
+            `remark` = #{set.remark},
+        </if>
+        <if test="set.resultCode != null and set.resultCode!=''">
+            `result_code` = #{set.resultCode},
+        </if>
+        <if test="set.resultMsg != null and set.resultMsg!=''">
+            `result_msg` = #{set.resultMsg},
+        </if>
+        <if test="set.businessType != null and set.businessType!=''">
+            `business_type` = #{set.businessType},
+        </if>
+        <if test="set.serverIp != null and set.serverIp!=''">
+            `server_ip` = #{set.serverIp},
+        </if>
+        <if test="set.clientIp != null and set.clientIp!=''">
+            `client_ip` = #{set.clientIp},
+        </if>
+        <if test="set.createdBy != null and set.createdBy!=''">
+            `created_by` = #{set.createdBy},
+        </if>
+        <if test="set.dateCreated != null">
+            `date_created` = #{set.dateCreated},
+        </if>
+        <if test="set.updatedBy != null and set.updatedBy!=''">
+            `updated_by` = #{set.updatedBy},
+        </if>
+        <if test="set.dateUpdated != null">
+            `date_updated` = #{set.dateUpdated},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.serialNoList != null">
+                    `serial_no` in
+                    <foreach collection="where.serialNoList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzySerialNo!=null and where.fuzzySerialNo.size()>0">
+                (
+                <foreach collection="where.fuzzySerialNo"  separator="or" item="item">
+                    `Serial_no` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzySerialNo!=null and where.rightFuzzySerialNo.size()>0">
+                (
+                <foreach collection="where.rightFuzzySerialNo"  separator="or" item="item">
+                    `Serial_no` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.traceIdList != null">
+                    `trace_id` in
+                    <foreach collection="where.traceIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyTraceId!=null and where.fuzzyTraceId.size()>0">
+                (
+                <foreach collection="where.fuzzyTraceId"  separator="or" item="item">
+                    `Trace_id` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyTraceId!=null and where.rightFuzzyTraceId.size()>0">
+                (
+                <foreach collection="where.rightFuzzyTraceId"  separator="or" item="item">
+                    `Trace_id` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.requestPathList != null">
+                    `request_path` in
+                    <foreach collection="where.requestPathList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyRequestPath!=null and where.fuzzyRequestPath.size()>0">
+                (
+                <foreach collection="where.fuzzyRequestPath"  separator="or" item="item">
+                    `Request_path` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRequestPath!=null and where.rightFuzzyRequestPath.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRequestPath"  separator="or" item="item">
+                    `Request_path` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.requestMethodList != null">
+                    `request_method` in
+                    <foreach collection="where.requestMethodList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyRequestMethod!=null and where.fuzzyRequestMethod.size()>0">
+                (
+                <foreach collection="where.fuzzyRequestMethod"  separator="or" item="item">
+                    `Request_method` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRequestMethod!=null and where.rightFuzzyRequestMethod.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRequestMethod"  separator="or" item="item">
+                    `Request_method` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.spendTimeList != null">
+                    `spend_time` in
+                    <foreach collection="where.spendTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.spendTimeSt !=null">
+                `spend_time` >= #{where.spendTimeSt} and
+            </if>
+            <if test="where.spendTimeEd!=null">
+                `spend_time` &lt;= #{where.spendTimeEd} and
+            </if>
+                <if test="where.statusList != null">
+                    `status` in
+                    <foreach collection="where.statusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyStatus!=null and where.fuzzyStatus.size()>0">
+                (
+                <foreach collection="where.fuzzyStatus"  separator="or" item="item">
+                    `Status` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyStatus!=null and where.rightFuzzyStatus.size()>0">
+                (
+                <foreach collection="where.rightFuzzyStatus"  separator="or" item="item">
+                    `Status` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.remarkList != null">
+                    `remark` in
+                    <foreach collection="where.remarkList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyRemark!=null and where.fuzzyRemark.size()>0">
+                (
+                <foreach collection="where.fuzzyRemark"  separator="or" item="item">
+                    `Remark` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRemark!=null and where.rightFuzzyRemark.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRemark"  separator="or" item="item">
+                    `Remark` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.resultCodeList != null">
+                    `result_code` in
+                    <foreach collection="where.resultCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyResultCode!=null and where.fuzzyResultCode.size()>0">
+                (
+                <foreach collection="where.fuzzyResultCode"  separator="or" item="item">
+                    `Result_code` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyResultCode!=null and where.rightFuzzyResultCode.size()>0">
+                (
+                <foreach collection="where.rightFuzzyResultCode"  separator="or" item="item">
+                    `Result_code` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.resultMsgList != null">
+                    `result_msg` in
+                    <foreach collection="where.resultMsgList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyResultMsg!=null and where.fuzzyResultMsg.size()>0">
+                (
+                <foreach collection="where.fuzzyResultMsg"  separator="or" item="item">
+                    `Result_msg` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyResultMsg!=null and where.rightFuzzyResultMsg.size()>0">
+                (
+                <foreach collection="where.rightFuzzyResultMsg"  separator="or" item="item">
+                    `Result_msg` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.businessTypeList != null">
+                    `business_type` in
+                    <foreach collection="where.businessTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyBusinessType!=null and where.fuzzyBusinessType.size()>0">
+                (
+                <foreach collection="where.fuzzyBusinessType"  separator="or" item="item">
+                    `Business_type` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyBusinessType!=null and where.rightFuzzyBusinessType.size()>0">
+                (
+                <foreach collection="where.rightFuzzyBusinessType"  separator="or" item="item">
+                    `Business_type` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.serverIpList != null">
+                    `server_ip` in
+                    <foreach collection="where.serverIpList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyServerIp!=null and where.fuzzyServerIp.size()>0">
+                (
+                <foreach collection="where.fuzzyServerIp"  separator="or" item="item">
+                    `Server_ip` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyServerIp!=null and where.rightFuzzyServerIp.size()>0">
+                (
+                <foreach collection="where.rightFuzzyServerIp"  separator="or" item="item">
+                    `Server_ip` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.clientIpList != null">
+                    `client_ip` in
+                    <foreach collection="where.clientIpList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyClientIp!=null and where.fuzzyClientIp.size()>0">
+                (
+                <foreach collection="where.fuzzyClientIp"  separator="or" item="item">
+                    `Client_ip` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyClientIp!=null and where.rightFuzzyClientIp.size()>0">
+                (
+                <foreach collection="where.rightFuzzyClientIp"  separator="or" item="item">
+                    `Client_ip` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.createdByList != null">
+                    `created_by` in
+                    <foreach collection="where.createdByList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyCreatedBy!=null and where.fuzzyCreatedBy.size()>0">
+                (
+                <foreach collection="where.fuzzyCreatedBy"  separator="or" item="item">
+                    `Created_by` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyCreatedBy!=null and where.rightFuzzyCreatedBy.size()>0">
+                (
+                <foreach collection="where.rightFuzzyCreatedBy"  separator="or" item="item">
+                    `Created_by` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.dateCreatedList != null">
+                    `date_created` in
+                    <foreach collection="where.dateCreatedList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.dateCreatedSt !=null">
+                `date_created` >= #{where.dateCreatedSt} and
+            </if>
+            <if test="where.dateCreatedEd!=null">
+                `date_created` &lt;= #{where.dateCreatedEd} and
+            </if>
+                <if test="where.updatedByList != null">
+                    `updated_by` in
+                    <foreach collection="where.updatedByList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyUpdatedBy!=null and where.fuzzyUpdatedBy.size()>0">
+                (
+                <foreach collection="where.fuzzyUpdatedBy"  separator="or" item="item">
+                    `Updated_by` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyUpdatedBy!=null and where.rightFuzzyUpdatedBy.size()>0">
+                (
+                <foreach collection="where.rightFuzzyUpdatedBy"  separator="or" item="item">
+                    `Updated_by` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.dateUpdatedList != null">
+                    `date_updated` in
+                    <foreach collection="where.dateUpdatedList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.dateUpdatedSt !=null">
+                `date_updated` >= #{where.dateUpdatedSt} and
+            </if>
+            <if test="where.dateUpdatedEd!=null">
+                `date_updated` &lt;= #{where.dateUpdatedEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.rainbow.model.entity.RequestRecordInfo" id="RequestRecordInfoMap">
+        <result property="serialNo" column="serial_no"/>
+        <result property="traceId" column="trace_id"/>
+        <result property="requestPath" column="request_path"/>
+        <result property="requestMethod" column="request_method"/>
+        <result property="spendTime" column="spend_time"/>
+        <result property="status" column="status"/>
+        <result property="remark" column="remark"/>
+        <result property="resultCode" column="result_code"/>
+        <result property="resultMsg" column="result_msg"/>
+        <result property="businessType" column="business_type"/>
+        <result property="serverIp" column="server_ip"/>
+        <result property="clientIp" column="client_ip"/>
+        <result property="createdBy" column="created_by"/>
+        <result property="dateCreated" column="date_created"/>
+        <result property="updatedBy" column="updated_by"/>
+        <result property="dateUpdated" column="date_updated"/>
+    </resultMap>
+
+
+    <select id="queryRequestRecordInfo" resultMap="RequestRecordInfoMap">
+        select
+        <include refid="baseResult"></include>
+        from  `request_record_info`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="serialNo != null and serialNo!=''">
+                `serial_no` = #{serialNo} and
+            </if>
+            <if test="traceId != null and traceId!=''">
+                `trace_id` = #{traceId} and
+            </if>
+            <if test="requestPath != null and requestPath!=''">
+                `request_path` = #{requestPath} and
+            </if>
+            <if test="requestMethod != null and requestMethod!=''">
+                `request_method` = #{requestMethod} and
+            </if>
+            <if test="spendTime != null">
+                `spend_time` = #{spendTime} and
+            </if>
+            <if test="status != null and status!=''">
+                `status` = #{status} and
+            </if>
+            <if test="remark != null and remark!=''">
+                `remark` = #{remark} and
+            </if>
+            <if test="resultCode != null and resultCode!=''">
+                `result_code` = #{resultCode} and
+            </if>
+            <if test="resultMsg != null and resultMsg!=''">
+                `result_msg` = #{resultMsg} and
+            </if>
+            <if test="businessType != null and businessType!=''">
+                `business_type` = #{businessType} and
+            </if>
+            <if test="serverIp != null and serverIp!=''">
+                `server_ip` = #{serverIp} and
+            </if>
+            <if test="clientIp != null and clientIp!=''">
+                `client_ip` = #{clientIp} and
+            </if>
+            <if test="createdBy != null and createdBy!=''">
+                `created_by` = #{createdBy} and
+            </if>
+            <if test="dateCreated != null">
+                `date_created` = #{dateCreated} and
+            </if>
+            <if test="updatedBy != null and updatedBy!=''">
+                `updated_by` = #{updatedBy} and
+            </if>
+            <if test="dateUpdated != null">
+                `date_updated` = #{dateUpdated} and
+            </if>
+            <if test = "(_parameter instanceof com.rainbow.model.entity.RequestRecordInfo$QueryBuilder) == true">
+                <if test="serialNoList != null">
+                    `serial_no` in
+                    <foreach collection="serialNoList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzySerialNo!=null and fuzzySerialNo.size()>0">
+                    (
+                    <foreach collection="fuzzySerialNo"  separator="or" item="item">
+                        `Serial_no` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzySerialNo!=null and rightFuzzySerialNo.size()>0">
+                    (
+                    <foreach collection="rightFuzzySerialNo"  separator="or" item="item">
+                        `Serial_no` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="traceIdList != null">
+                    `trace_id` in
+                    <foreach collection="traceIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyTraceId!=null and fuzzyTraceId.size()>0">
+                    (
+                    <foreach collection="fuzzyTraceId"  separator="or" item="item">
+                        `Trace_id` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyTraceId!=null and rightFuzzyTraceId.size()>0">
+                    (
+                    <foreach collection="rightFuzzyTraceId"  separator="or" item="item">
+                        `Trace_id` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="requestPathList != null">
+                    `request_path` in
+                    <foreach collection="requestPathList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRequestPath!=null and fuzzyRequestPath.size()>0">
+                    (
+                    <foreach collection="fuzzyRequestPath"  separator="or" item="item">
+                        `Request_path` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRequestPath!=null and rightFuzzyRequestPath.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRequestPath"  separator="or" item="item">
+                        `Request_path` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="requestMethodList != null">
+                    `request_method` in
+                    <foreach collection="requestMethodList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRequestMethod!=null and fuzzyRequestMethod.size()>0">
+                    (
+                    <foreach collection="fuzzyRequestMethod"  separator="or" item="item">
+                        `Request_method` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRequestMethod!=null and rightFuzzyRequestMethod.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRequestMethod"  separator="or" item="item">
+                        `Request_method` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="spendTimeList != null">
+                    `spend_time` in
+                    <foreach collection="spendTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="spendTimeSt !=null">
+                    `spend_time` >= #{spendTimeSt} and
+                </if>
+                <if test="spendTimeEd!=null">
+                    `spend_time` &lt;= #{spendTimeEd} and
+                </if>
+                <if test="statusList != null">
+                    `status` in
+                    <foreach collection="statusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyStatus!=null and fuzzyStatus.size()>0">
+                    (
+                    <foreach collection="fuzzyStatus"  separator="or" item="item">
+                        `Status` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStatus!=null and rightFuzzyStatus.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStatus"  separator="or" item="item">
+                        `Status` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="remarkList != null">
+                    `remark` in
+                    <foreach collection="remarkList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRemark!=null and fuzzyRemark.size()>0">
+                    (
+                    <foreach collection="fuzzyRemark"  separator="or" item="item">
+                        `Remark` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRemark!=null and rightFuzzyRemark.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRemark"  separator="or" item="item">
+                        `Remark` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="resultCodeList != null">
+                    `result_code` in
+                    <foreach collection="resultCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyResultCode!=null and fuzzyResultCode.size()>0">
+                    (
+                    <foreach collection="fuzzyResultCode"  separator="or" item="item">
+                        `Result_code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyResultCode!=null and rightFuzzyResultCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyResultCode"  separator="or" item="item">
+                        `Result_code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="resultMsgList != null">
+                    `result_msg` in
+                    <foreach collection="resultMsgList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyResultMsg!=null and fuzzyResultMsg.size()>0">
+                    (
+                    <foreach collection="fuzzyResultMsg"  separator="or" item="item">
+                        `Result_msg` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyResultMsg!=null and rightFuzzyResultMsg.size()>0">
+                    (
+                    <foreach collection="rightFuzzyResultMsg"  separator="or" item="item">
+                        `Result_msg` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="businessTypeList != null">
+                    `business_type` in
+                    <foreach collection="businessTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyBusinessType!=null and fuzzyBusinessType.size()>0">
+                    (
+                    <foreach collection="fuzzyBusinessType"  separator="or" item="item">
+                        `Business_type` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyBusinessType!=null and rightFuzzyBusinessType.size()>0">
+                    (
+                    <foreach collection="rightFuzzyBusinessType"  separator="or" item="item">
+                        `Business_type` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="serverIpList != null">
+                    `server_ip` in
+                    <foreach collection="serverIpList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyServerIp!=null and fuzzyServerIp.size()>0">
+                    (
+                    <foreach collection="fuzzyServerIp"  separator="or" item="item">
+                        `Server_ip` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyServerIp!=null and rightFuzzyServerIp.size()>0">
+                    (
+                    <foreach collection="rightFuzzyServerIp"  separator="or" item="item">
+                        `Server_ip` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="clientIpList != null">
+                    `client_ip` in
+                    <foreach collection="clientIpList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyClientIp!=null and fuzzyClientIp.size()>0">
+                    (
+                    <foreach collection="fuzzyClientIp"  separator="or" item="item">
+                        `Client_ip` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyClientIp!=null and rightFuzzyClientIp.size()>0">
+                    (
+                    <foreach collection="rightFuzzyClientIp"  separator="or" item="item">
+                        `Client_ip` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="createdByList != null">
+                    `created_by` in
+                    <foreach collection="createdByList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCreatedBy!=null and fuzzyCreatedBy.size()>0">
+                    (
+                    <foreach collection="fuzzyCreatedBy"  separator="or" item="item">
+                        `Created_by` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCreatedBy!=null and rightFuzzyCreatedBy.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCreatedBy"  separator="or" item="item">
+                        `Created_by` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="dateCreatedList != null">
+                    `date_created` in
+                    <foreach collection="dateCreatedList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="dateCreatedSt !=null">
+                    `date_created` >= #{dateCreatedSt} and
+                </if>
+                <if test="dateCreatedEd!=null">
+                    `date_created` &lt;= #{dateCreatedEd} and
+                </if>
+                <if test="updatedByList != null">
+                    `updated_by` in
+                    <foreach collection="updatedByList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyUpdatedBy!=null and fuzzyUpdatedBy.size()>0">
+                    (
+                    <foreach collection="fuzzyUpdatedBy"  separator="or" item="item">
+                        `Updated_by` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyUpdatedBy!=null and rightFuzzyUpdatedBy.size()>0">
+                    (
+                    <foreach collection="rightFuzzyUpdatedBy"  separator="or" item="item">
+                        `Updated_by` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="dateUpdatedList != null">
+                    `date_updated` in
+                    <foreach collection="dateUpdatedList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="dateUpdatedSt !=null">
+                    `date_updated` >= #{dateUpdatedSt} and
+                </if>
+                <if test="dateUpdatedEd!=null">
+                    `date_updated` &lt;= #{dateUpdatedEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryRequestRecordInfoLimit1" resultMap="RequestRecordInfoMap">
+        select
+        <include refid="baseResult"></include>
+        from  `request_record_info`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="serialNo != null and serialNo!=''">
+                `serial_no` = #{serialNo} and
+            </if>
+            <if test="traceId != null and traceId!=''">
+                `trace_id` = #{traceId} and
+            </if>
+            <if test="requestPath != null and requestPath!=''">
+                `request_path` = #{requestPath} and
+            </if>
+            <if test="requestMethod != null and requestMethod!=''">
+                `request_method` = #{requestMethod} and
+            </if>
+            <if test="spendTime != null">
+                `spend_time` = #{spendTime} and
+            </if>
+            <if test="status != null and status!=''">
+                `status` = #{status} and
+            </if>
+            <if test="remark != null and remark!=''">
+                `remark` = #{remark} and
+            </if>
+            <if test="resultCode != null and resultCode!=''">
+                `result_code` = #{resultCode} and
+            </if>
+            <if test="resultMsg != null and resultMsg!=''">
+                `result_msg` = #{resultMsg} and
+            </if>
+            <if test="businessType != null and businessType!=''">
+                `business_type` = #{businessType} and
+            </if>
+            <if test="serverIp != null and serverIp!=''">
+                `server_ip` = #{serverIp} and
+            </if>
+            <if test="clientIp != null and clientIp!=''">
+                `client_ip` = #{clientIp} and
+            </if>
+            <if test="createdBy != null and createdBy!=''">
+                `created_by` = #{createdBy} and
+            </if>
+            <if test="dateCreated != null">
+                `date_created` = #{dateCreated} and
+            </if>
+            <if test="updatedBy != null and updatedBy!=''">
+                `updated_by` = #{updatedBy} and
+            </if>
+            <if test="dateUpdated != null">
+                `date_updated` = #{dateUpdated} and
+            </if>
+            <if test = "(_parameter instanceof com.rainbow.model.entity.RequestRecordInfo$QueryBuilder) == true">
+                    <if test="serialNoList != null">
+                        `serial_no` in
+                        <foreach collection="serialNoList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzySerialNo!=null and fuzzySerialNo.size()>0">
+                    (
+                    <foreach collection="fuzzySerialNo"  separator="or" item="item">
+                        `Serial_no` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzySerialNo!=null and rightFuzzySerialNo.size()>0">
+                    (
+                    <foreach collection="rightFuzzySerialNo"  separator="or" item="item">
+                        `Serial_no` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="traceIdList != null">
+                        `trace_id` in
+                        <foreach collection="traceIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyTraceId!=null and fuzzyTraceId.size()>0">
+                    (
+                    <foreach collection="fuzzyTraceId"  separator="or" item="item">
+                        `Trace_id` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyTraceId!=null and rightFuzzyTraceId.size()>0">
+                    (
+                    <foreach collection="rightFuzzyTraceId"  separator="or" item="item">
+                        `Trace_id` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="requestPathList != null">
+                        `request_path` in
+                        <foreach collection="requestPathList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyRequestPath!=null and fuzzyRequestPath.size()>0">
+                    (
+                    <foreach collection="fuzzyRequestPath"  separator="or" item="item">
+                        `Request_path` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRequestPath!=null and rightFuzzyRequestPath.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRequestPath"  separator="or" item="item">
+                        `Request_path` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="requestMethodList != null">
+                        `request_method` in
+                        <foreach collection="requestMethodList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyRequestMethod!=null and fuzzyRequestMethod.size()>0">
+                    (
+                    <foreach collection="fuzzyRequestMethod"  separator="or" item="item">
+                        `Request_method` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRequestMethod!=null and rightFuzzyRequestMethod.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRequestMethod"  separator="or" item="item">
+                        `Request_method` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="spendTimeList != null">
+                        `spend_time` in
+                        <foreach collection="spendTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="spendTimeSt !=null">
+                    `spend_time` >= #{spendTimeSt} and
+                </if>
+                <if test="spendTimeEd!=null">
+                    `spend_time` &lt;= #{spendTimeEd} and
+                </if>
+                    <if test="statusList != null">
+                        `status` in
+                        <foreach collection="statusList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyStatus!=null and fuzzyStatus.size()>0">
+                    (
+                    <foreach collection="fuzzyStatus"  separator="or" item="item">
+                        `Status` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStatus!=null and rightFuzzyStatus.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStatus"  separator="or" item="item">
+                        `Status` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="remarkList != null">
+                        `remark` in
+                        <foreach collection="remarkList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyRemark!=null and fuzzyRemark.size()>0">
+                    (
+                    <foreach collection="fuzzyRemark"  separator="or" item="item">
+                        `Remark` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRemark!=null and rightFuzzyRemark.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRemark"  separator="or" item="item">
+                        `Remark` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="resultCodeList != null">
+                        `result_code` in
+                        <foreach collection="resultCodeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyResultCode!=null and fuzzyResultCode.size()>0">
+                    (
+                    <foreach collection="fuzzyResultCode"  separator="or" item="item">
+                        `Result_code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyResultCode!=null and rightFuzzyResultCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyResultCode"  separator="or" item="item">
+                        `Result_code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="resultMsgList != null">
+                        `result_msg` in
+                        <foreach collection="resultMsgList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyResultMsg!=null and fuzzyResultMsg.size()>0">
+                    (
+                    <foreach collection="fuzzyResultMsg"  separator="or" item="item">
+                        `Result_msg` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyResultMsg!=null and rightFuzzyResultMsg.size()>0">
+                    (
+                    <foreach collection="rightFuzzyResultMsg"  separator="or" item="item">
+                        `Result_msg` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="businessTypeList != null">
+                        `business_type` in
+                        <foreach collection="businessTypeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyBusinessType!=null and fuzzyBusinessType.size()>0">
+                    (
+                    <foreach collection="fuzzyBusinessType"  separator="or" item="item">
+                        `Business_type` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyBusinessType!=null and rightFuzzyBusinessType.size()>0">
+                    (
+                    <foreach collection="rightFuzzyBusinessType"  separator="or" item="item">
+                        `Business_type` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="serverIpList != null">
+                        `server_ip` in
+                        <foreach collection="serverIpList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyServerIp!=null and fuzzyServerIp.size()>0">
+                    (
+                    <foreach collection="fuzzyServerIp"  separator="or" item="item">
+                        `Server_ip` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyServerIp!=null and rightFuzzyServerIp.size()>0">
+                    (
+                    <foreach collection="rightFuzzyServerIp"  separator="or" item="item">
+                        `Server_ip` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="clientIpList != null">
+                        `client_ip` in
+                        <foreach collection="clientIpList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyClientIp!=null and fuzzyClientIp.size()>0">
+                    (
+                    <foreach collection="fuzzyClientIp"  separator="or" item="item">
+                        `Client_ip` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyClientIp!=null and rightFuzzyClientIp.size()>0">
+                    (
+                    <foreach collection="rightFuzzyClientIp"  separator="or" item="item">
+                        `Client_ip` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="createdByList != null">
+                        `created_by` in
+                        <foreach collection="createdByList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyCreatedBy!=null and fuzzyCreatedBy.size()>0">
+                    (
+                    <foreach collection="fuzzyCreatedBy"  separator="or" item="item">
+                        `Created_by` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCreatedBy!=null and rightFuzzyCreatedBy.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCreatedBy"  separator="or" item="item">
+                        `Created_by` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="dateCreatedList != null">
+                        `date_created` in
+                        <foreach collection="dateCreatedList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="dateCreatedSt !=null">
+                    `date_created` >= #{dateCreatedSt} and
+                </if>
+                <if test="dateCreatedEd!=null">
+                    `date_created` &lt;= #{dateCreatedEd} and
+                </if>
+                    <if test="updatedByList != null">
+                        `updated_by` in
+                        <foreach collection="updatedByList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyUpdatedBy!=null and fuzzyUpdatedBy.size()>0">
+                    (
+                    <foreach collection="fuzzyUpdatedBy"  separator="or" item="item">
+                        `Updated_by` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyUpdatedBy!=null and rightFuzzyUpdatedBy.size()>0">
+                    (
+                    <foreach collection="rightFuzzyUpdatedBy"  separator="or" item="item">
+                        `Updated_by` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="dateUpdatedList != null">
+                        `date_updated` in
+                        <foreach collection="dateUpdatedList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="dateUpdatedSt !=null">
+                    `date_updated` >= #{dateUpdatedSt} and
+                </if>
+                <if test="dateUpdatedEd!=null">
+                    `date_updated` &lt;= #{dateUpdatedEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `serial_no`,
+        `trace_id`,
+        `request_path`,
+        `request_method`,
+        `spend_time`,
+        `status`,
+        `remark`,
+        `result_code`,
+        `result_msg`,
+        `business_type`,
+        `server_ip`,
+        `client_ip`,
+        `created_by`,
+        `date_created`,
+        `updated_by`,
+        `date_updated`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof com.rainbow.model.entity.RequestRecordInfo$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.serialNo==true">
+                        `serial_no`,
+                    </if>
+                    <if test="fetchFields.fetchFields.traceId==true">
+                        `trace_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.requestPath==true">
+                        `request_path`,
+                    </if>
+                    <if test="fetchFields.fetchFields.requestMethod==true">
+                        `request_method`,
+                    </if>
+                    <if test="fetchFields.fetchFields.spendTime==true">
+                        `spend_time`,
+                    </if>
+                    <if test="fetchFields.fetchFields.status==true">
+                        `status`,
+                    </if>
+                    <if test="fetchFields.fetchFields.remark==true">
+                        `remark`,
+                    </if>
+                    <if test="fetchFields.fetchFields.resultCode==true">
+                        `result_code`,
+                    </if>
+                    <if test="fetchFields.fetchFields.resultMsg==true">
+                        `result_msg`,
+                    </if>
+                    <if test="fetchFields.fetchFields.businessType==true">
+                        `business_type`,
+                    </if>
+                    <if test="fetchFields.fetchFields.serverIp==true">
+                        `server_ip`,
+                    </if>
+                    <if test="fetchFields.fetchFields.clientIp==true">
+                        `client_ip`,
+                    </if>
+                    <if test="fetchFields.fetchFields.createdBy==true">
+                        `created_by`,
+                    </if>
+                    <if test="fetchFields.fetchFields.dateCreated==true">
+                        `date_created`,
+                    </if>
+                    <if test="fetchFields.fetchFields.updatedBy==true">
+                        `updated_by`,
+                    </if>
+                    <if test="fetchFields.fetchFields.dateUpdated==true">
+                        `date_updated`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.serialNo==null">
+                        `serial_no`,
+                    </if>
+                    <if test="fetchFields.excludeFields.traceId==null">
+                        `trace_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.requestPath==null">
+                        `request_path`,
+                    </if>
+                    <if test="fetchFields.excludeFields.requestMethod==null">
+                        `request_method`,
+                    </if>
+                    <if test="fetchFields.excludeFields.spendTime==null">
+                        `spend_time`,
+                    </if>
+                    <if test="fetchFields.excludeFields.status==null">
+                        `status`,
+                    </if>
+                    <if test="fetchFields.excludeFields.remark==null">
+                        `remark`,
+                    </if>
+                    <if test="fetchFields.excludeFields.resultCode==null">
+                        `result_code`,
+                    </if>
+                    <if test="fetchFields.excludeFields.resultMsg==null">
+                        `result_msg`,
+                    </if>
+                    <if test="fetchFields.excludeFields.businessType==null">
+                        `business_type`,
+                    </if>
+                    <if test="fetchFields.excludeFields.serverIp==null">
+                        `server_ip`,
+                    </if>
+                    <if test="fetchFields.excludeFields.clientIp==null">
+                        `client_ip`,
+                    </if>
+                    <if test="fetchFields.excludeFields.createdBy==null">
+                        `created_by`,
+                    </if>
+                    <if test="fetchFields.excludeFields.dateCreated==null">
+                        `date_created`,
+                    </if>
+                    <if test="fetchFields.excludeFields.updatedBy==null">
+                        `updated_by`,
+                    </if>
+                    <if test="fetchFields.excludeFields.dateUpdated==null">
+                        `date_updated`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof com.rainbow.model.entity.RequestRecordInfo$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>
