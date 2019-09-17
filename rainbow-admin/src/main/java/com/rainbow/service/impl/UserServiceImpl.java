@@ -15,8 +15,8 @@ import com.rainbow.model.vo.UserInfoEntity;
 import com.rainbow.service.UserService;
 import com.rainbow.util.ExcelUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -47,10 +47,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void importUserInfo(MultipartFile file) throws ExcelException {
+    public void importUserInfo(MultipartFile file) {
 
         //解析数据
-        List<UserInfoEntity> list = ExcelUtil.readExcel(file, UserInfoEntity.class, 1, 1);
+        List<UserInfoEntity> list = null;
+        try {
+            list = ExcelUtil.readExcel(file, UserInfoEntity.class, 1, 1);
+        } catch (ExcelException e) {
+            e.printStackTrace();
+        }
         log.info("解析数据:UserServiceImpl_readExcel_list={}", JSON.toJSONString(list));
         if (CollectionUtils.isEmpty(list)){
             throw new ServerException(ResultCodeEnum.FAILED);

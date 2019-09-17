@@ -2,6 +2,7 @@ package com.rainbow.controller;
 
 import com.rainbow.common.annocation.OperationRecord;
 import com.rainbow.common.enums.OperationRecordEnum;
+import com.rainbow.common.exception.ExcelException;
 import com.rainbow.common.model.ApiResultEntity;
 import com.rainbow.model.dto.ExportUserInfoDTO;
 import com.rainbow.model.dto.InsertDTO;
@@ -39,7 +40,11 @@ public class UserController {
     @ApiOperation(value = "导入用户信息",tags = "上传用户信息接口",httpMethod = "POST")
     @PostMapping("/importUserInfo")
     public ApiResultEntity importUserInfo(@RequestParam("file") MultipartFile file){
-         userService.importUserInfo(file);
+        try {
+            userService.importUserInfo(file);
+        } catch (ExcelException e) {
+            e.printStackTrace();
+        }
         return ApiResultEntity.Builder.init().success().bulid();
     }
 
