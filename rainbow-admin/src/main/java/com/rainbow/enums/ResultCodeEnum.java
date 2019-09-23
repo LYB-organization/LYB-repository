@@ -12,7 +12,10 @@ import java.util.List;
 public enum  ResultCodeEnum {
 
     SUCCESS("000000","成功"),
-    FAILED("999999","失败")
+    FAILED("999999","失败"),
+
+    SAVE_REDIS("100001","保存redis失败")
+
         ;
 
     private String code;

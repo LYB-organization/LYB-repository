@@ -6,13 +6,13 @@ package com.rainbow.common.enums;
  */
 public enum SerialNoEnum {
 
-    USER_SerialNo("U","4",true),
+    USER_PK("US",4,true),
 
     ;
 
 
     private String prefix;
-    private String number;
+    private int number;
     private boolean isIncludeDate;
 
     public void setPrefix(String prefix){
@@ -23,11 +23,11 @@ public enum SerialNoEnum {
         return prefix;
     }
 
-    public void setNumber(String number){
+    public void setNumber(int number){
         this.number = number;
     }
 
-    public String getNumber(){
+    public int getNumber(){
         return number;
     }
 
@@ -44,7 +44,7 @@ public enum SerialNoEnum {
      * @param number 序列号数字长度
      * @param isIncludeDate  是否需要日期
      */
-    SerialNoEnum(String prefix,String number,boolean isIncludeDate){
+    SerialNoEnum(String prefix,int number,boolean isIncludeDate){
         this.prefix = prefix;
         this.number = number;
         this.isIncludeDate = isIncludeDate;

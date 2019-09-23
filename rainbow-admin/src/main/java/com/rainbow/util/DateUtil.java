@@ -11,6 +11,6 @@ import java.util.Date;
 public class DateUtil {
 
     public static final String dateToString(Date date){
-        return new SimpleDateFormat("yyyy-MM-dd").format(date);
+        return new SimpleDateFormat("yyyyMMdd").format(date);
     }
 }

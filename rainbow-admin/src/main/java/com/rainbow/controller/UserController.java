@@ -53,4 +53,11 @@ public class UserController {
     public void exportUserInfo(@RequestBody ExportUserInfoDTO dto ,HttpServletResponse response){
           userService.exportUserInfo(dto,response);
     }
+
+    @ApiOperation(value = "使用redis生成自增序列号",tags = "使用redis生成自增序列号,保存用户信息到redis",httpMethod = "POST")
+    @PostMapping("/saveUserInfoToRedis")
+    public ApiResultEntity saveUserInfoToRedis(@RequestBody InsertDTO dto){
+        int result = userService.saveUserInfoToRedis(dto);
+        return ApiResultEntity.Builder.init().success().withData(result).bulid();
+    }
 }

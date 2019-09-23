@@ -19,7 +19,7 @@ public class SerialNoServiceImpl implements SerialNoService {
 
     private static final String SERIAL_PREFIX = "SERIAL_NUMBER_PREFIX";
 
-    private static final int DEFAULT_LENTH = 6;
+    private static final int DEFAULT_LENGTH = 6;
 
     @Autowired
     private RedisUtil redisUtil;
@@ -44,9 +44,7 @@ public class SerialNoServiceImpl implements SerialNoService {
 
         return new StringBuilder(serialNoEnum.getPrefix())
                 .append(date)
-                .append(getSequence(serialNum, serialNoEnum.getNumber().length()))
-                .toString()
-                ;
+                .append(getSequence(serialNum, serialNoEnum.getNumber())).toString();
     }
 
     //自动补位
@@ -57,10 +55,10 @@ public class SerialNoServiceImpl implements SerialNoService {
 
         //默认6位
         if (length == 0){
-            length = DEFAULT_LENTH;
+            length = DEFAULT_LENGTH;
         }
 
-        if (len > length){
+        if (len >= length){
             return str;
         }
 

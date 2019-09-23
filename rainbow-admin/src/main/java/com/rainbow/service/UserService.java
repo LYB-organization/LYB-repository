@@ -31,7 +31,10 @@ public interface UserService {
      */
     void exportUserInfo(ExportUserInfoDTO dto, HttpServletResponse response);
 
-
-
-
+    /**
+     * 保存用户信息到redis
+     * @param dto
+     * @return
+     */
+    int saveUserInfoToRedis(InsertDTO dto);
 }

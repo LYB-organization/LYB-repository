@@ -3,8 +3,10 @@ package com.rainbow.service.impl;
 
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.fastjson.JSON;
+import com.rainbow.common.enums.SerialNoEnum;
 import com.rainbow.common.exception.ExcelException;
 import com.rainbow.common.exception.ServerException;
+import com.rainbow.common.service.SerialNoService;
 import com.rainbow.enums.ResultCodeEnum;
 import com.rainbow.mapper.UserInfoMapper;
 import com.rainbow.model.dto.ExportUserInfoDTO;
@@ -14,7 +16,9 @@ import com.rainbow.model.vo.ExportUserInfoVO;
 import com.rainbow.model.vo.UserInfoEntity;
 import com.rainbow.service.UserService;
 import com.rainbow.util.ExcelUtil;
+import com.rainbow.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +38,12 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserInfoMapper userInfoMapper;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Resource
+    private SerialNoService serialNoService;
 
 
     @Override
@@ -84,5 +94,35 @@ public class UserServiceImpl implements UserService {
             log.error("导出失败", e);
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 将用户信息保存到redis
+     * @param dto
+     * @return
+     */
+    @Override
+    public int saveUserInfoToRedis(InsertDTO dto) {
+
+
+
+            //将数据入库
+        UserInfo build = UserInfo.Build()
+                .serialNo(serialNoService.generateSerialNo(SerialNoEnum.USER_PK))
+                .username(dto.getUsername())
+                .password(dto.getPassword())
+                .build();
+
+        log.info("UserServiceImpl_exportUserInfo_build={}", build);
+        int i = userInfoMapper.insertUserInfo(build);
+
+        //将数据放入缓存中
+        boolean result = redisUtil.set(build.getSerialNo(), dto, 60 * 60 * 24);
+
+        if (!result){
+            throw new ServerException(ResultCodeEnum.SAVE_REDIS);
+        }
+
+        return i;
     }
 }
