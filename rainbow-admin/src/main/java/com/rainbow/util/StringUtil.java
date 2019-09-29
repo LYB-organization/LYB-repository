@@ -17,4 +17,13 @@ public class StringUtil extends StringUtils {
     public static String getUUID(){
         return  UUID.randomUUID().toString().replaceAll("-","" );
     }
+
+    /**
+     * 生成四位随机数
+     */
+    public static int getRandomId(){
+
+        int num = (int) ((Math.random() * 9000)+1000);
+        return num;
+    }
 }

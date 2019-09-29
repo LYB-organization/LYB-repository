@@ -2,6 +2,7 @@ package com.rainbow.model.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.io.Serializable;
  * date 2019/9/29
  */
 @Data
+@Builder
 @ApiModel
 public class SendSmsVO implements Serializable {
 

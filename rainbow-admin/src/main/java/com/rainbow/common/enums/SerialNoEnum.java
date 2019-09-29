@@ -7,6 +7,7 @@ package com.rainbow.common.enums;
 public enum SerialNoEnum {
 
     USER_PK("US",4,true),
+    SEND_MSG("",4,false),
 
     ;
 

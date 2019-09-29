@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "获取redis中保存的信息",tags = "获取redis中保存的信息",httpMethod = "POST")
-    @PostMapping("/saveUserInfoToRedis")
+    @PostMapping("/getDataByKey")
     public ApiResultEntity getDataByKey(@RequestBody GetDataByKeyDTO dto){
         userService.getDataByKey(dto);
         return ApiResultEntity.Builder.init().success().bulid();

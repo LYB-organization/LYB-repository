@@ -27,6 +27,7 @@ import com.rainbow.model.vo.UserInfoEntity;
 import com.rainbow.service.UserService;
 import com.rainbow.util.ExcelUtil;
 import com.rainbow.util.RedisUtil;
+import com.rainbow.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -150,7 +151,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public SendSmsVO sendSms(SendSmsDTO dto) {
 
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "<accessKeyId>", "<accessSecret>");
+        //生成四位随机数
+        String code = String.valueOf(StringUtil.getRandomId());
+
+        String templateParam = "{'code':"+code+"}";
+
+        DefaultProfile profile = DefaultProfile.getProfile("深圳", "LTAIuendnR1eRxPJ", "u8VypXm1CiwmP7b1wMZzeRg2928T2w");
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
@@ -158,18 +164,53 @@ public class UserServiceImpl implements UserService {
         request.setDomain("dysmsapi.aliyuncs.com");
         request.setVersion("2017-05-25");
         request.setAction("SendSms");
-        request.putQueryParameter("RegionId", "cn-hangzhou");
-        request.putQueryParameter("PhoneNumbers", "18127762791");
-        request.putQueryParameter("SignName", "[测试专用]阿里云通信");
+        request.putQueryParameter("RegionId", "深圳");
+        request.putQueryParameter("PhoneNumbers", dto.getPhone());
+        request.putQueryParameter("SignName", "催清收运营平台");
+        request.putQueryParameter("TemplateCode", "SMS_174992215");
+        request.putQueryParameter("TemplateParam", templateParam);
         try {
             CommonResponse response = client.getCommonResponse(request);
-            System.out.println(response.getData());
+            log.info("信息返回参数:UserServiceImpl_getCommonResponse_response={}", response);
         } catch (ServerException e) {
             e.printStackTrace();
         } catch (ClientException e) {
             e.printStackTrace();
         }
 
-        return null;
+        return SendSmsVO.builder().verificationCode(code).build();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
