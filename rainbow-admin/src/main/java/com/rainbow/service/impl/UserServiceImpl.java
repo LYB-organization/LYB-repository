@@ -3,6 +3,13 @@ package com.rainbow.service.impl;
 
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.fastjson.JSON;
+import com.aliyuncs.CommonRequest;
+import com.aliyuncs.CommonResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.IAcsClient;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.http.MethodType;
+import com.aliyuncs.profile.DefaultProfile;
 import com.rainbow.common.enums.SerialNoEnum;
 import com.rainbow.common.exception.ExcelException;
 import com.rainbow.common.exception.ServerException;
@@ -10,9 +17,12 @@ import com.rainbow.common.service.SerialNoService;
 import com.rainbow.enums.ResultCodeEnum;
 import com.rainbow.mapper.UserInfoMapper;
 import com.rainbow.model.dto.ExportUserInfoDTO;
+import com.rainbow.model.dto.GetDataByKeyDTO;
 import com.rainbow.model.dto.InsertDTO;
+import com.rainbow.model.dto.SendSmsDTO;
 import com.rainbow.model.entity.UserInfo;
 import com.rainbow.model.vo.ExportUserInfoVO;
+import com.rainbow.model.vo.SendSmsVO;
 import com.rainbow.model.vo.UserInfoEntity;
 import com.rainbow.service.UserService;
 import com.rainbow.util.ExcelUtil;
@@ -104,9 +114,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int saveUserInfoToRedis(InsertDTO dto) {
 
-
-
-            //将数据入库
+        //将数据入库
         UserInfo build = UserInfo.Build()
                 .serialNo(serialNoService.generateSerialNo(SerialNoEnum.USER_PK))
                 .username(dto.getUsername())
@@ -124,5 +132,44 @@ public class UserServiceImpl implements UserService {
         }
 
         return i;
+    }
+
+    /**
+     * 根据key获取redis中的数据
+     * @param dto
+     */
+    @Override
+    public void getDataByKey(GetDataByKeyDTO dto) {
+
+    }
+
+    /**
+     * Springboot整合阿里云短信服务
+     * @param dto
+     */
+    @Override
+    public SendSmsVO sendSms(SendSmsDTO dto) {
+
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "<accessKeyId>", "<accessSecret>");
+        IAcsClient client = new DefaultAcsClient(profile);
+
+        CommonRequest request = new CommonRequest();
+        request.setMethod(MethodType.POST);
+        request.setDomain("dysmsapi.aliyuncs.com");
+        request.setVersion("2017-05-25");
+        request.setAction("SendSms");
+        request.putQueryParameter("RegionId", "cn-hangzhou");
+        request.putQueryParameter("PhoneNumbers", "18127762791");
+        request.putQueryParameter("SignName", "[测试专用]阿里云通信");
+        try {
+            CommonResponse response = client.getCommonResponse(request);
+            System.out.println(response.getData());
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

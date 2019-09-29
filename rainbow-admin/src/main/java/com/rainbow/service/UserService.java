@@ -2,7 +2,10 @@ package com.rainbow.service;
 
 import com.rainbow.common.exception.ExcelException;
 import com.rainbow.model.dto.ExportUserInfoDTO;
+import com.rainbow.model.dto.GetDataByKeyDTO;
 import com.rainbow.model.dto.InsertDTO;
+import com.rainbow.model.dto.SendSmsDTO;
+import com.rainbow.model.vo.SendSmsVO;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -37,4 +40,16 @@ public interface UserService {
      * @return
      */
     int saveUserInfoToRedis(InsertDTO dto);
+
+    /**
+     * 根据key获取redis数据
+     * @param dto
+     */
+    void getDataByKey(GetDataByKeyDTO dto);
+
+    /**
+     * Springboot整合阿里云短信服务
+     * @param dto
+     */
+    SendSmsVO sendSms(SendSmsDTO dto);
 }

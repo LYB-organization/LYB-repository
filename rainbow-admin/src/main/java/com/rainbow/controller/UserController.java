@@ -5,7 +5,10 @@ import com.rainbow.common.enums.OperationRecordEnum;
 import com.rainbow.common.exception.ExcelException;
 import com.rainbow.common.model.ApiResultEntity;
 import com.rainbow.model.dto.ExportUserInfoDTO;
+import com.rainbow.model.dto.GetDataByKeyDTO;
 import com.rainbow.model.dto.InsertDTO;
+import com.rainbow.model.dto.SendSmsDTO;
+import com.rainbow.model.vo.SendSmsVO;
 import com.rainbow.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +21,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author HP
+ * @author dengjie9527
  */
 @Api(value = "springboot整合swagger2测试接口",tags = {"springboot整合swagger2测试接口","Version-1.00"})
 @RestController
@@ -59,5 +62,19 @@ public class UserController {
     public ApiResultEntity saveUserInfoToRedis(@RequestBody InsertDTO dto){
         int result = userService.saveUserInfoToRedis(dto);
         return ApiResultEntity.Builder.init().success().withData(result).bulid();
+    }
+
+    @ApiOperation(value = "获取redis中保存的信息",tags = "获取redis中保存的信息",httpMethod = "POST")
+    @PostMapping("/saveUserInfoToRedis")
+    public ApiResultEntity getDataByKey(@RequestBody GetDataByKeyDTO dto){
+        userService.getDataByKey(dto);
+        return ApiResultEntity.Builder.init().success().bulid();
+    }
+
+    @ApiOperation(value = "springboot整合阿里云短信服务",tags = "springboot整合阿里云短信服务",httpMethod = "POST")
+    @PostMapping("/sendSms")
+    public ApiResultEntity<SendSmsVO> sendSms(@RequestBody SendSmsDTO dto){
+        SendSmsVO entity = userService.sendSms(dto);
+        return ApiResultEntity.Builder.init().success().withData(entity).bulid();
     }
 }
