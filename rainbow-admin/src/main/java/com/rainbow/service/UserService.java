@@ -1,14 +1,13 @@
 package com.rainbow.service;
 
 import com.rainbow.common.exception.ExcelException;
-import com.rainbow.model.dto.ExportUserInfoDTO;
-import com.rainbow.model.dto.GetDataByKeyDTO;
-import com.rainbow.model.dto.InsertDTO;
-import com.rainbow.model.dto.SendSmsDTO;
+import com.rainbow.model.dto.*;
+import com.rainbow.model.entity.UserInfo;
 import com.rainbow.model.vo.SendSmsVO;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * author  DENGJIE9527
@@ -16,6 +15,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface UserService {
 
+    /**
+     * 查询用户信息
+     * @param dto
+     * @return
+     */
+    List<UserInfo> queryUserInfoList(QueryUserInfoDTO dto);
     /**
      *新增用户
      * @param dto
@@ -52,4 +57,12 @@ public interface UserService {
      * @param dto
      */
     SendSmsVO sendSms(SendSmsDTO dto);
+
+    /**
+     * Springboot整合邮件发送服务
+     * @param dto
+     */
+    void sendEmail(SendEmailDTO dto);
+
+
 }

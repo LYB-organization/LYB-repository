@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: rainbow-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: dj_route
+          uri: http://www.ityouknow.com
+          predicates:
+            - Path=/spring-cloud
+
+

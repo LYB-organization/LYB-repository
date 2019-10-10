@@ -4,10 +4,9 @@ import com.rainbow.common.annocation.OperationRecord;
 import com.rainbow.common.enums.OperationRecordEnum;
 import com.rainbow.common.exception.ExcelException;
 import com.rainbow.common.model.ApiResultEntity;
-import com.rainbow.model.dto.ExportUserInfoDTO;
-import com.rainbow.model.dto.GetDataByKeyDTO;
-import com.rainbow.model.dto.InsertDTO;
-import com.rainbow.model.dto.SendSmsDTO;
+import com.rainbow.model.dto.*;
+import com.rainbow.model.entity.UserInfo;
+import com.rainbow.model.vo.QueryUserInfoVO;
 import com.rainbow.model.vo.SendSmsVO;
 import com.rainbow.service.UserService;
 import io.swagger.annotations.Api;
@@ -19,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author dengjie9527
@@ -31,6 +31,14 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @ApiOperation(value = "查询用户信息",tags = "查询用户信息",httpMethod = "POST")
+    @PostMapping("/query")
+    @OperationRecord(bizType = "用户模块",desc = "查询用户信息",operationType = OperationRecordEnum.SELECT)
+    public ApiResultEntity<List<QueryUserInfoVO>> queryUserInfoList(@RequestBody @Validated QueryUserInfoDTO dto){
+        List<UserInfo> list = userService.queryUserInfoList(dto);
+        return ApiResultEntity.Builder.init().success().withData(list).bulid();
+    }
 
     @ApiOperation(value = "新增用户接口",tags = "新增用户接口",httpMethod = "POST")
     @PostMapping("/insert")
@@ -76,5 +84,12 @@ public class UserController {
     public ApiResultEntity<SendSmsVO> sendSms(@RequestBody SendSmsDTO dto){
         SendSmsVO entity = userService.sendSms(dto);
         return ApiResultEntity.Builder.init().success().withData(entity).bulid();
+    }
+
+    @ApiOperation(value = "springboot整合邮件服务",tags = "springboot整合邮件服务",httpMethod = "POST")
+    @PostMapping("/sendEmail")
+    public ApiResultEntity sendEmail(@RequestBody SendEmailDTO dto){
+        userService.sendEmail(dto);
+        return ApiResultEntity.Builder.init().success().bulid();
     }
 }

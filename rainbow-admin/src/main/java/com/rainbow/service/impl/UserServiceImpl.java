@@ -15,13 +15,12 @@ import com.rainbow.common.exception.ExcelException;
 import com.rainbow.common.exception.ServerException;
 import com.rainbow.common.service.SerialNoService;
 import com.rainbow.enums.ResultCodeEnum;
+import com.rainbow.enums.StatusEnum;
 import com.rainbow.mapper.UserInfoMapper;
-import com.rainbow.model.dto.ExportUserInfoDTO;
-import com.rainbow.model.dto.GetDataByKeyDTO;
-import com.rainbow.model.dto.InsertDTO;
-import com.rainbow.model.dto.SendSmsDTO;
+import com.rainbow.model.dto.*;
 import com.rainbow.model.entity.UserInfo;
 import com.rainbow.model.vo.ExportUserInfoVO;
+import com.rainbow.model.vo.QueryUserInfoVO;
 import com.rainbow.model.vo.SendSmsVO;
 import com.rainbow.model.vo.UserInfoEntity;
 import com.rainbow.service.UserService;
@@ -30,6 +29,9 @@ import com.rainbow.util.RedisUtil;
 import com.rainbow.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,6 +58,29 @@ public class UserServiceImpl implements UserService {
     @Resource
     private SerialNoService serialNoService;
 
+    @Resource
+    private JavaMailSender javaMailSender;
+
+    @Value("${mail.fromMail.addr}")
+    private String sendPeople;
+
+
+    /**
+     * 查询用户信息
+     * @param dto
+     * @return
+     */
+    @Override
+    public List<UserInfo> queryUserInfoList(QueryUserInfoDTO dto) {
+
+        UserInfo build = UserInfo.Build()
+                .username(dto.getUsername())
+                .status(StatusEnum.VALID.getCode())
+                .build();
+        List<UserInfo> list = userInfoMapper.queryUserInfo(build);
+
+        return list;
+    }
 
     @Override
     public int addUser(InsertDTO dto) {
@@ -179,6 +204,38 @@ public class UserServiceImpl implements UserService {
         }
 
         return SendSmsVO.builder().verificationCode(code).build();
+    }
+
+    /**
+     * Springboot整合邮件发送服务
+     * @param dto
+     */
+    @Override
+    public void sendEmail(SendEmailDTO dto) {
+
+        //创建邮件对象
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        //设置发送人
+        message.setFrom(sendPeople);
+
+        //设置目标邮箱号
+        message.setTo(dto.getToEmailAddress());
+
+        //设置邮件主题
+        message.setSubject(dto.getSubject());
+
+        //设置邮件内容
+        message.setText(dto.getContent());
+
+
+        try {
+            javaMailSender.send(message);
+
+            log.info("邮件发送成功!!!");
+        }catch (Exception e){
+            log.error("发送简单邮件时发生异常。");
+        }
     }
 }
 

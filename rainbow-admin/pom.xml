@@ -126,13 +126,21 @@
         </dependency>
         <!--redis end-->
 
-        <!--aliyun start-->
+        <!--aliyun-短信服务 start-->
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
             <version>4.0.3</version>
         </dependency>
-        <!--aliyun end-->
+        <!--aliyun-短信服务 end-->
+
+        <!--mail start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <!--mail end-->
+
     </dependencies>
 
     <dependencyManagement>
