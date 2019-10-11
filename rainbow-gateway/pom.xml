@@ -44,6 +44,13 @@
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
         <!--gateway end-->
+
+        <!--context start-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+        </dependency>
+        <!--content end-->
     </dependencies>
 
     <!--SpringCould start-->
@@ -67,6 +74,17 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>

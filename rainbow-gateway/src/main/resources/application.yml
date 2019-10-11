@@ -1,0 +1,35 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://192.168.137.1:8888/eureka
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    preferIpAddress: true
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: debug
+
+spring:
+  application:
+    name: rainbow-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: neo_route
+        uri: http://www.ityouknow.com
+        predicates:
+          - Path=/spring-cloud
+
