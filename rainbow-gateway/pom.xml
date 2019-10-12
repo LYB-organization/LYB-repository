@@ -51,6 +51,18 @@
             <artifactId>spring-cloud-context</artifactId>
         </dependency>
         <!--content end-->
+
+        <!--redis 限流-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+        </dependency>
+
+        <!--hystrix 熔断-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
     </dependencies>
 
     <!--SpringCould start-->

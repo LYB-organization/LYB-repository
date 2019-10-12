@@ -3,6 +3,7 @@ server:
   servlet:
     context-path: /
 
+
 eureka:
   client:
     register-with-eureka: true
@@ -19,17 +20,100 @@ logging:
         cloud:
           gateway: debug
 
+#springcould 过滤器包括gateway Filter 和 global Filter(全局过滤器9种)
 spring:
   application:
     name: rainbow-gateway
+  redis:
+    host: 192.168.184.129
+    port: 6379
+    password:
+    database: 0
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
       routes:
-      - id: neo_route
-        uri: http://www.ityouknow.com
-        predicates:
-          - Path=/spring-cloud
+        - id: neo_route
+          uri: http://www.ityouknow.com
+          predicates:
+            - Path=/spring-cloud
 
+        #AddRequestParameter GatewayFilter 过滤器:添加参数
+        - id: add_request_parameter_route
+          uri: http://localhost:8080
+          filters:
+            - AddRequestParameter=foo, world
+          predicates:
+            - Method=GET
+
+        #StripPrefix GatewayFilter 过滤器:去除部分url
+        - id: stripPrefix-route
+          uri: lb://RAINBOW-ADMIN
+          predicates:
+            - Path=/rainbow/**
+          filters:
+            - StripPrefix=1
+
+        #PrefixPath GatewayFilter 过滤器:添加url
+        - id: prefixPath-route
+          uri: lb://RAINBOW-ADMIN
+          predicates:
+            - Path=/query/**
+          filters:
+            - PrefixPath=/user
+
+
+        #Redis RateLimiter 限速路由器  在高并发场景常用的手段之一
+        #1.引入相关依赖 2.引入redis配置和限流相关配置 3.项目中设置限流策略，创建config类 4.根据请求参数和ip地址限流
+        - id: requestratelimiter_route
+          uri: lb://RAINBOW-ADMIN
+          predicates:
+            - Path=/user/**
+          filters:
+            - name:
+              args:
+                #允许用户每秒处理10个请求
+                redis-rate-limiter.replenishRate: 10
+                #令牌桶的容量，允许在一秒钟内完成的最大请求数
+                redis-rate-limiter.burstCapacity: 20
+                #使用 SpEL 按名称引用 bean
+                key-resolver: "#{@userKeyResolver}"
+
+         #熔断路由器 hystrix
+        #1.引入相关依赖   2.添加配置
+        - id: hystrix_route
+          uri: lb://RAINBOW-ADMIN
+          filters:
+            - Hystrix=myCommandName
+          predicates:
+            - Path=/consumingserviceendpoint
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                #当调用Hystrix 的fallback被回调时将请求转发到、incaseoffailureusethis
+                fallbackUri: forword:/incaseoffailureusethis
+
+
+        #重试路由器 RetryGateway Filter
+        - id: retry_route
+          uri: lb://RAINBOW-ADMIN
+          predicates:
+            - Path=/retry
+          filters:
+            - name: Retry
+              args:
+              #重试次数，默认3次
+              retries: 3
+              #HTTP 的状态返回码
+              statuses: BAD_GATEWAY
+              #指定哪些方法的请求需要进行重试逻辑，默认值是 GET 方法
+              methods:
+              #符合的某段状态码才会进行重试逻辑，默认值是 SERVER_ERROR，值是 5，也就是 5XX(5 开头的状态码)，共有5 个值
+              series:
+
+        #Hystrix 过滤器
+        #过滤器官方文档:https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.0.0.RELEASE/single/spring-cloud-gateway.html#_gatewayfilter_factories
+
+        #可以自定义过滤器
