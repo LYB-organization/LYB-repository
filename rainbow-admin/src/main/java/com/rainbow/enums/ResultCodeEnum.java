@@ -14,9 +14,9 @@ public enum  ResultCodeEnum {
     SUCCESS("000000","成功"),
     FAILED("999999","失败"),
 
-    SAVE_REDIS("100001","保存redis失败")
-
-        ;
+    SAVE_REDIS("100001","保存redis失败"),
+    VALIDATE_PARAM_ERROR("888888", "参数校验错误"),
+    SERVER_EXCEPTION("777777", "接口请求出错");
 
     private String code;
 

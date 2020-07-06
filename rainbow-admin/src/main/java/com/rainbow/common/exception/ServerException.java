@@ -1,6 +1,7 @@
 package com.rainbow.common.exception;
 
 import com.rainbow.enums.ResultCodeEnum;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  * date 2019/9/11
  */
 @Data
+@Builder
 public class ServerException extends RuntimeException{
 
     private String code;
