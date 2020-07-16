@@ -1,4 +1,4 @@
-package com.rainbow.rainbowadmin;
+package com.rainbow;
 
 import com.rainbow.util.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;

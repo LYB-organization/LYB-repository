@@ -1,8 +1,6 @@
 package com.rainbow.common.exception;
 
-import lombok.Builder;
 
-@Builder
 public class ExcelException extends Exception {
     /**
      * Constructs a new exception with the specified detail message.  The
