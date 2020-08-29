@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@MapperScan("com.rainbow.mapper")
+@MapperScan("com.rainbow.mapper.**")
 @ComponentScan({"com.rainbow.common.**","com.rainbow.common.config","com.rainbow.**"})
 @EnableEurekaClient
 @EnableSwagger2
